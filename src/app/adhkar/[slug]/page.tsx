@@ -1,5 +1,7 @@
+import { categories } from "@/data/categories";
+
 export function generateStaticParams() {
-  return [{ slug: "morning" }, { slug: "evening" }];
+  return categories.map((c) => ({ slug: c.slug }));
 }
 export default function Page() {
   return <main>قريبًا</main>;
