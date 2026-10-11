@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="p-6">
+    <main className="p-6 max-w-6xl mx-auto ">
       <div className="mb-4">
         <CategoryCard title="المسبحة" href="/tasbeeh" />
       </div>
