@@ -46,7 +46,10 @@ const amiri = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: "أذكار",
+  title: {
+    default: "أذكار",
+    template: "%s | أذكار",
+  },
   description: "موقع أذكار المسلم",
 };
 
