@@ -30,6 +30,7 @@
 import type { Metadata } from "next";
 import { Amiri, Cairo } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -56,7 +57,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
