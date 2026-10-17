@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
 @theme inline {
   --font-sans: var(--font-ui);
@@ -15,5 +15,32 @@
 
 body {
   background: var(--color-bg);
+  color: var(--color-text);
+} */
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-ui);
+  --font-quran: var(--font-quran);
+
+  --color-bg: #f3f0e6;
+  /* --color-bg: #f3f0e6; */
+  --color-surface: #faf8f1;
+  --color-primary: #1f5f4f;
+  --color-primary-dark: #16473b;
+  --color-accent: #b8924a;
+  --color-text: #24302b;
+  --color-muted: #6f7a72;
+  --color-border: #ddd5c0;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image: url("/pattern.svg");
+  background-size: 80px 80px;
   color: var(--color-text);
 }

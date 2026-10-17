@@ -1,7 +1,7 @@
 export type Dhikr = {
   id: string;
   text: string;
-  count: number;
+  count?: number;
   source?: string;
   note?: string;
 };

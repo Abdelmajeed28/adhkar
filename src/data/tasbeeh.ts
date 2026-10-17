@@ -6,8 +6,12 @@ export type Tasbeeh = {
 export const tasbeehList: Tasbeeh[] = [
   { id: "subhanallah", text: "سُبْحَانَ اللَّهِ" },
   { id: "alhamdulillah", text: "الْحَمْدُ لِلَّهِ" },
-  { id: "allahuakbar", text: "اللَّهُ أَكْبَرُ" },
   { id: "la-ilaha-illallah", text: "لَا إِلَهَ إِلَّا اللَّهُ" },
+  {
+    id: "la-haol-wla-qoata-illblallah",
+    text: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+  },
+  { id: "allahuakbar", text: "اللَّهُ أَكْبَرُ" },
   { id: "istighfar", text: "أَسْتَغْفِرُ اللَّهَ" },
   {
     id: "salat-nabi",
