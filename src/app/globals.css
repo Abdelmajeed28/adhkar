@@ -22,9 +22,8 @@ body {
 @theme inline {
   --font-sans: var(--font-ui);
   --font-quran: var(--font-quran);
-
+  --font-mushaf: var(--font-mushaf);
   --color-bg: #f3f0e6;
-  /* --color-bg: #f3f0e6; */
   --color-surface: #faf8f1;
   --color-primary: #1f5f4f;
   --color-primary-dark: #16473b;

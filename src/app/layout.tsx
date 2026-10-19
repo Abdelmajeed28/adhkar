@@ -28,10 +28,11 @@
 //   );
 // }
 import type { Metadata } from "next";
-import { Amiri, Cairo } from "next/font/google";
+import { Cairo, Amiri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import localFont from "next/font/local";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -43,6 +44,11 @@ const amiri = Amiri({
   subsets: ["arabic"],
   weight: ["400", "700"],
   variable: "--font-quran",
+  display: "swap",
+});
+const mushaf = localFont({
+  src: "../fonts/Uthmanic.woff",
+  variable: "--font-mushaf",
   display: "swap",
 });
 
@@ -60,7 +66,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable}`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      suppressHydrationWarning
+      className={`${cairo.variable} ${amiri.variable} ${mushaf.variable}`}
+    >
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <div className="flex-1">{children}</div>
