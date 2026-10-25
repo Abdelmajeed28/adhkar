@@ -43,3 +43,11 @@ body {
   background-size: 80px 80px;
   color: var(--color-text);
 }
+.mushaf-page {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+.mushaf-text {
+  text-align: justify;
+  text-align-last: justify;
+}
