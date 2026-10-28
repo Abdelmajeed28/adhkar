@@ -48,3 +48,18 @@ const pages: PageData[] = (() => {
 export function getPages() {
   return pages;
 }
+
+export function getSurahPages(id: number): PageData[] {
+  const s = getSurah(id);
+  if (!s) return [];
+  const map = new Map<number, PageData>();
+  for (const a of s.ayahs) {
+    let p = map.get(a.page);
+    if (!p) {
+      p = { page: a.page, juz: a.juz, ayahs: [] };
+      map.set(a.page, p);
+    }
+    p.ayahs.push({ surahId: s.id, number: a.number, text: a.text.join(" ") });
+  }
+  return [...map.values()];
+}

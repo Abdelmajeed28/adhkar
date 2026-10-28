@@ -33,6 +33,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import localFont from "next/font/local";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -49,6 +50,11 @@ const amiri = Amiri({
 const mushaf = localFont({
   src: "../fonts/Uthmanic.woff",
   variable: "--font-mushaf",
+  display: "swap",
+});
+const surahName = localFont({
+  src: "../fonts/SurahNames.woff",
+  variable: "--font-surah-name",
   display: "swap",
 });
 
@@ -70,12 +76,13 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       suppressHydrationWarning
-      className={`${cairo.variable} ${amiri.variable} ${mushaf.variable}`}
+      className={`${cairo.variable} ${amiri.variable} ${mushaf.variable} ${surahName.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

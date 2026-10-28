@@ -23,6 +23,7 @@ body {
   --font-sans: var(--font-ui);
   --font-quran: var(--font-quran);
   --font-mushaf: var(--font-mushaf);
+  --font-surah-name: var(--font-surah-name);
   --color-bg: #f3f0e6;
   --color-surface: #faf8f1;
   --color-primary: #1f5f4f;
@@ -49,5 +50,5 @@ body {
 }
 .mushaf-text {
   text-align: justify;
-  text-align-last: justify;
+  text-align-last: center;
 }
