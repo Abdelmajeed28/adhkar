@@ -9,6 +9,10 @@ import { sleeping } from "./adhkar/sleeping";
 import { afterSleeping } from "./adhkar/afterSleeping";
 import { enterBathroom } from "./duaa/enterBathroom";
 import { outBathroom } from "./duaa/outBathroom";
+import { enterMosque } from "./duaa/enterMosque";
+import { outMosque } from "./duaa/outMosque";
+import { sogodTelawa } from "./duaa/sogodTelawa";
+import { eftarSeyam } from "./duaa/eftarSeyam";
 
 export const categories: Category[] = [
   morning,
@@ -21,6 +25,10 @@ export const categories: Category[] = [
   afterSleeping,
   enterBathroom,
   outBathroom,
+  enterMosque,
+  outMosque,
+  sogodTelawa,
+  eftarSeyam,
 ];
 
 export function getCategory(slug: string) {
