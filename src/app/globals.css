@@ -22,9 +22,9 @@ body {
 @theme inline {
   --font-sans: var(--font-ui);
   --font-quran: var(--font-quran);
-
+  --font-mushaf: var(--font-mushaf);
+  --font-surah-name: var(--font-surah-name);
   --color-bg: #f3f0e6;
-  /* --color-bg: #f3f0e6; */
   --color-surface: #faf8f1;
   --color-primary: #1f5f4f;
   --color-primary-dark: #16473b;
@@ -43,4 +43,12 @@ body {
   background-image: url("/pattern.svg");
   background-size: 80px 80px;
   color: var(--color-text);
+}
+.mushaf-page {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+.mushaf-text {
+  text-align: justify;
+  text-align-last: center;
 }
