@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import BackLink from "@/components/BackLink";
 import MushafPage from "@/components/MushafPage";
 import { getAllSurahs, getSurah, getSurahPages } from "@/data/quran";
+import ReadingTracker from "@/components/ReadingTracker";
 
 type Props = {
   params: Promise<{ surah: string }>;
@@ -33,6 +34,7 @@ export default async function SurahPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-2xl p-2">
+      <ReadingTracker surahId={data.id} surahName={data.name} />
       <BackLink href="/quran" label="العودة لقائمة السور" />
 
       {getSurahPages(id).map((p) => (
