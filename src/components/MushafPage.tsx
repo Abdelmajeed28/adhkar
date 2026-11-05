@@ -19,7 +19,11 @@ export default function MushafPage({ page, surahs }: Props) {
   }
 
   return (
-    <section className="mushaf-page mx-auto mb-6 rounded-lg border-4 border-double border-accent bg-surface p-2 shadow-sm">
+    <section
+      id={`page-${page.page}`}
+      data-mushaf-page={page.page}
+      className="mushaf-page mx-auto scroll-mt-24 mb-6 rounded-lg border-4 border-double border-accent bg-surface p-2 shadow-sm"
+    >
       <div className="rounded border border-primary/40 px-4 py-3">
         <div className="mb-2 text-sm text-muted">
           الجزء {toArabicDigits(page.juz)}
