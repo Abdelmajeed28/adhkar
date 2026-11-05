@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+// import Link from "next/link";
 import BackLink from "@/components/BackLink";
 import MushafPage from "@/components/MushafPage";
 import { getAllSurahs, getSurah, getSurahPages } from "@/data/quran";
@@ -41,16 +41,16 @@ export default async function SurahPage({ params }: Props) {
 
       <nav className="mb-6 flex justify-between gap-2 text-primary">
         {next ? (
-          <Link href={`/quran/${next.id}`} className="hover:text-primary-dark">
+          <a href={`/quran/${next.id}/`} className="hover:text-primary-dark">
             ← سورة {next.name}
-          </Link>
+          </a>
         ) : (
           <span />
         )}
         {prev ? (
-          <Link href={`/quran/${prev.id}`} className="hover:text-primary-dark">
+          <a href={`/quran/${prev.id}/`} className="hover:text-primary-dark">
             سورة {prev.name} →
-          </Link>
+          </a>
         ) : (
           <span />
         )}

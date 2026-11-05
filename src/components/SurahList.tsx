@@ -35,7 +35,8 @@ export default function SurahList({ surahs }: { surahs: Item[] }) {
               key={s.id}
               title={`${toArabicDigits(s.id)}. ${s.name}`}
               subtitle={`${toArabicDigits(s.ayahs_count)} آية`}
-              href={`/quran/${s.id}`}
+              href={`/quran/${s.id}/`}
+              hardNav
             />
           ))}
         </div>
