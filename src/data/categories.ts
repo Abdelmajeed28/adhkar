@@ -14,7 +14,23 @@ import { outMosque } from "./duaa/outMosque";
 import { sogodTelawa } from "./duaa/sogodTelawa";
 import { eftarSeyam } from "./duaa/eftarSeyam";
 
-export const categories: Category[] = [
+// export const categories: Category[] = [
+//   morning,
+//   evening,
+//   after_prayer,
+//   leaving_house,
+//   entering_house,
+//   wudu,
+//   sleeping,
+//   afterSleeping,
+//   enterBathroom,
+//   outBathroom,
+//   enterMosque,
+//   outMosque,
+//   sogodTelawa,
+//   eftarSeyam,
+// ];
+export const adhkarCategories: Category[] = [
   morning,
   evening,
   after_prayer,
@@ -23,6 +39,9 @@ export const categories: Category[] = [
   wudu,
   sleeping,
   afterSleeping,
+];
+
+export const duaaCategories: Category[] = [
   enterBathroom,
   outBathroom,
   enterMosque,
@@ -31,6 +50,7 @@ export const categories: Category[] = [
   eftarSeyam,
 ];
 
+export const categories: Category[] = [...adhkarCategories, ...duaaCategories];
 export function getCategory(slug: string) {
   return categories.find((c) => c.slug === slug);
 }
