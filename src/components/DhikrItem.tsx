@@ -15,7 +15,7 @@ export default function DhikrItem({ dhikr }: Props) {
       {dhikr.note && <p className="mt-2 text-sm text-muted">{dhikr.note}</p>}
       {dhikr.count !== undefined && (
         <div className="mt-4">
-          <Counter initial={dhikr.count} />
+          <Counter id={dhikr.id} initial={dhikr.count} />
         </div>
       )}
 

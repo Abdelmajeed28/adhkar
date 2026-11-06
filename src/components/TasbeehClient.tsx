@@ -1,25 +1,56 @@
+// "use client";
+
+// import { useState } from "react";
+// import { tasbeehList } from "@/data/tasbeeh";
+
+// export default function TasbeehClient() {
+//   const [selectedId, setSelectedId] = useState(tasbeehList[0].id);
+//   const [counts, setCounts] = useState<Record<string, number>>({});
+
+//   const selected =
+//     tasbeehList.find((t) => t.id === selectedId) ?? tasbeehList[0];
+//   const count = counts[selectedId] ?? 0;
 "use client";
 
-import { useState } from "react";
+import { useMemo } from "react";
 import { tasbeehList } from "@/data/tasbeeh";
+import { useHydrated, useLocalStorage } from "@/lib/useLocalStorage";
 
 export default function TasbeehClient() {
-  const [selectedId, setSelectedId] = useState(tasbeehList[0].id);
-  const [counts, setCounts] = useState<Record<string, number>>({});
+  const [raw, setRaw] = useLocalStorage("tasbeeh:state");
+  const hydrated = useHydrated();
+
+  const stored = useMemo(() => {
+    try {
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  }, [raw]);
+
+  const counts: Record<string, number> =
+    stored.counts && typeof stored.counts === "object" ? stored.counts : {};
+  const selectedId = tasbeehList.some((t) => t.id === stored.selectedId)
+    ? stored.selectedId
+    : tasbeehList[0].id;
 
   const selected =
     tasbeehList.find((t) => t.id === selectedId) ?? tasbeehList[0];
   const count = counts[selectedId] ?? 0;
 
+  function save(next: {
+    selectedId: typeof selectedId;
+    counts: Record<string, number>;
+  }) {
+    setRaw(JSON.stringify(next));
+  }
+
   function increment() {
-    setCounts((prev) => ({
-      ...prev,
-      [selectedId]: (prev[selectedId] ?? 0) + 1,
-    }));
+    save({ selectedId, counts: { ...counts, [selectedId]: count + 1 } });
   }
 
   function reset() {
-    setCounts((prev) => ({ ...prev, [selectedId]: 0 }));
+    save({ selectedId, counts: { ...counts, [selectedId]: 0 } });
   }
 
   return (
@@ -31,7 +62,7 @@ export default function TasbeehClient() {
           return (
             <button
               key={item.id}
-              onClick={() => setSelectedId(item.id)}
+              onClick={() => save({ selectedId: item.id, counts })}
               aria-pressed={active}
               className={`rounded-full border px-4 py-2 text-sm transition ${
                 active
@@ -56,7 +87,7 @@ export default function TasbeehClient() {
           aria-label="زيادة العداد"
           className="mt-6 flex h-44 w-44 touch-manipulation select-none items-center justify-center rounded-full bg-primary text-6xl font-bold tabular-nums text-white shadow-lg transition hover:bg-primary-dark active:scale-95"
         >
-          {count}
+          {hydrated ? count : ""}
         </button>
 
         <button
