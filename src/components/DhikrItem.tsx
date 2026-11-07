@@ -1,5 +1,6 @@
 import type { Dhikr } from "@/data/types";
 import Counter from "./Counter";
+import ShareButton from "./ShareButton";
 
 type Props = {
   dhikr: Dhikr;
@@ -18,7 +19,7 @@ export default function DhikrItem({ dhikr }: Props) {
           <Counter id={dhikr.id} initial={dhikr.count} />
         </div>
       )}
-
+      <ShareButton text={dhikr.text} />
       {dhikr.source && (
         <details className="mt-3 text-sm text-muted">
           <summary className="cursor-pointer select-none">المصدر</summary>
