@@ -29,12 +29,12 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-3xl p-4">
-      <BackLink />
+      <BackLink href="/adhkar" label="العودة للأذكار" />
       <h1 className="mb-4 text-2xl font-bold text-primary">{category.title}</h1>
 
       <div className="space-y-4">
         {category.adhkar.map((dhikr) => (
-          <DhikrItem key={dhikr.id} dhikr={dhikr} />
+          <DhikrItem key={dhikr.id} dhikr={dhikr} title={category.title} />
         ))}
       </div>
     </main>

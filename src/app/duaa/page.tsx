@@ -16,7 +16,7 @@ export default function DuaaPage() {
           <CategoryCard
             key={category.slug}
             title={category.title}
-            href={`/adhkar/${category.slug}`}
+            href={`/duaa/${category.slug}`}
           />
         ))}
       </div>

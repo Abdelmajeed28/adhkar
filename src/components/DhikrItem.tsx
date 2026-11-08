@@ -4,9 +4,10 @@ import ShareButton from "./ShareButton";
 
 type Props = {
   dhikr: Dhikr;
+  title?: string;
 };
 
-export default function DhikrItem({ dhikr }: Props) {
+export default function DhikrItem({ dhikr, title }: Props) {
   return (
     <article className="rounded-xl border border-border bg-surface p-4">
       <p className="font-quran text-2xl leading-loose text-justify">
@@ -19,7 +20,7 @@ export default function DhikrItem({ dhikr }: Props) {
           <Counter id={dhikr.id} initial={dhikr.count} />
         </div>
       )}
-      <ShareButton text={dhikr.text} />
+      <ShareButton text={dhikr.text} title={title} />
       {dhikr.source && (
         <details className="mt-3 text-sm text-muted">
           <summary className="cursor-pointer select-none">المصدر</summary>

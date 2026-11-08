@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 
-type Props = { text: string };
+type Props = { text: string; title?: string };
 
-export default function ShareButton({ text }: Props) {
+export default function ShareButton({ text, title }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
+    const full = title ? `${title}\n\n${text}` : text;
     try {
       if (navigator.share) {
-        await navigator.share({ text });
+        await navigator.share({ text: full });
         return;
       }
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(full);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {}
