@@ -1,7 +1,5 @@
 import CategoryCard from "@/components/CategoryCard";
 import ContinueReading from "@/components/ContinueReading";
-import { categories } from "@/data/categories";
-// import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,19 +9,12 @@ export default function Home() {
           أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ
         </h1>
       </div>
-      <div className="mb-4 grid grid-cols-2 gap-4">
-        <CategoryCard title="المسبحة" href="/tasbeeh" />
-        <CategoryCard title="القرآن الكريم" href="/quran" />
-      </div>
       <ContinueReading />
-      <div className="grid grid-cols-2 gap-4">
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.slug}
-            title={category.title}
-            href={`/adhkar/${category.slug}`}
-          />
-        ))}
+      <div className="mb-4 grid grid-cols-2 gap-4">
+        <CategoryCard title="القرآن الكريم" href="/quran" />
+        <CategoryCard title="المسبحة" href="/tasbeeh" />
+        <CategoryCard title="الأذكار" href="/adhkar" />
+        <CategoryCard title="الأدعية" href="/duaa" />
       </div>
     </main>
   );
