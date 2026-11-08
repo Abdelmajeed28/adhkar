@@ -36,7 +36,9 @@ export default async function SurahPage({ params }: Props) {
     <main className="mx-auto max-w-2xl p-2">
       <ReadingTracker surahId={data.id} surahName={data.name} />
       <BackLink href="/quran" label="العودة لقائمة السور" />
-
+      <p className="mb-3 text-center text-sm font-bold text-primary">
+        اضغط على رقم الآية لوضع علامة عندها
+      </p>
       {getSurahPages(id).map((p) => (
         <MushafPage key={p.page} page={p} surahs={surahs} />
       ))}

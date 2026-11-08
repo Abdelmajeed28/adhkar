@@ -1,6 +1,7 @@
 import SurahBanner from "./SurahBanner";
 import type { PageAyah, PageData } from "@/data/quran";
 import { toArabicDigits } from "@/lib/arabic";
+import AyahMark from "./AyahMark";
 
 type Item = { id: number; name: string; ayahs_count: number };
 type Block =
@@ -49,9 +50,15 @@ export default function MushafPage({ page, surahs }: Props) {
               {b.ayahs.map((a) => (
                 <span key={`${a.surahId}-${a.number}`}>
                   {a.text}{" "}
-                  <span className="text-4xl text-accent">
+                  {/* <span className="text-4xl text-accent">
                     {toArabicDigits(a.number)}
-                  </span>{" "}
+                  </span>{" "} */}
+                  <AyahMark
+                    surahId={a.surahId}
+                    surahName={surahs.get(a.surahId)?.name ?? ""}
+                    ayah={a.number}
+                    page={page.page}
+                  />
                 </span>
               ))}
             </p>

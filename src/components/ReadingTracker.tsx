@@ -11,15 +11,20 @@ export default function ReadingTracker({ surahId, surahName }: Props) {
 
     // لو الرابط فيه #page-N: انزل للصفحة وصحّح المكان بعد ما الصفحات ترسم
     const hash = window.location.hash;
-    const target = /^#page-\d+$/.test(hash)
+    const target = /^#(page-\d+|ayah-\d+-\d+)$/.test(hash)
       ? document.querySelector<HTMLElement>(hash)
       : null;
+    // الآية بنوقفها في نص الشاشة، والصفحة في أولها
+    const block: ScrollLogicalPosition = hash.startsWith("#ayah-")
+      ? "center"
+      : "start";
 
     if (target) {
-      const go = () => target.scrollIntoView({ block: "start" });
+      const go = () => target.scrollIntoView({ block });
       go();
       requestAnimationFrame(go);
       setTimeout(go, 300);
+      setTimeout(go, 600);
     }
 
     // ما نحفظش أي موضع قبل ما النزول يستقر

@@ -1,38 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { toArabicDigits } from "@/lib/arabic";
+import { useLocalStorage } from "@/lib/useLocalStorage";
 
-type Last = { surah: number; name: string; page: number };
+type Mark = { surah: number; name: string; page: number; ayah?: number };
+
+function parse(raw: string | null): Mark | null {
+  if (!raw) return null;
+  try {
+    const v = JSON.parse(raw);
+    if (
+      typeof v.surah === "number" &&
+      typeof v.page === "number" &&
+      typeof v.name === "string"
+    ) {
+      return {
+        surah: v.surah,
+        name: v.name,
+        page: v.page,
+        ayah: typeof v.ayah === "number" ? v.ayah : undefined,
+      };
+    }
+  } catch {}
+  return null;
+}
 
 export default function ContinueReading() {
-  const [last, setLast] = useState<Last | null>(null);
+  const [lastRaw] = useLocalStorage("quran:last");
+  const [markRaw] = useLocalStorage("quran:bookmark");
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem("quran:last");
-      if (!raw) return;
-      const v = JSON.parse(raw);
-      if (
-        typeof v.surah === "number" &&
-        typeof v.page === "number" &&
-        typeof v.name === "string"
-      ) {
-        setLast(v);
-      }
-    } catch {}
-  }, []);
+  const mark = useMemo(() => parse(markRaw), [markRaw]);
+  const last = useMemo(() => parse(lastRaw), [lastRaw]);
+  const item = mark ?? last;
 
-  if (!last) return null;
+  if (!item) return null;
+
+  const href =
+    item.ayah !== undefined
+      ? `/quran/${item.surah}/#ayah-${item.surah}-${item.ayah}`
+      : `/quran/${item.surah}/#page-${item.page}`;
 
   return (
     <a
-      href={`/quran/${last.surah}/#page-${last.page}`}
-      className="mb-4 flex items-center justify-between rounded-2xl border border-accent bg-surface p-4 text-primary transition hover:bg-primary hover:text-white"
+      href={href}
+      className="mb-4 flex items-center justify-between gap-2 rounded-2xl border border-accent bg-surface p-4 text-primary transition hover:bg-primary hover:text-white"
     >
       <span className="font-bold">متابعة القراءة</span>
       <span className="text-sm opacity-80">
-        سورة {last.name} · صفحة {toArabicDigits(last.page)}
+        سورة {item.name} · صفحة {toArabicDigits(item.page)}
+        {item.ayah !== undefined && <> · آية {toArabicDigits(item.ayah)}</>}
       </span>
     </a>
   );
